@@ -1,0 +1,47 @@
+.main-card {
+  margin: 2rem auto;
+  padding: 2rem;
+  max-width: 800px;
+  background-color: #f3e5f5; /* Light plum */
+  color: #4a148c;
+}
+
+.section-card {
+  margin-bottom: 1.5rem;
+  background-color: white;
+  padding: 1rem;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.submit-btn-container {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+mat-card-title {
+  color: #6a1b9a;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.map-field {
+  flex: 1;
+  margin-left: 2px;
+}
+
+.map-label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  display: block;
+  color: #6a1b9a;
+}
+
+.spinner-btn {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 8px;
+}

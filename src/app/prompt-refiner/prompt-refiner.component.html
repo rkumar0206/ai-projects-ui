@@ -1,0 +1,56 @@
+<mat-card class="prompt-refiner-card">
+  <mat-card-title>Prompt Refiner</mat-card-title>
+
+  <form [formGroup]="promptForm" class="refiner-form">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Raw Prompt</mat-label>
+      <textarea
+        matInput
+        rows="6"
+        formControlName="rawPrompt"
+        placeholder="Type or paste your raw prompt here...">
+      </textarea>
+    </mat-form-field>
+
+    <div class="submit-container">
+      <button
+        mat-raised-button
+        color="primary"
+        [disabled]="isLoading"
+        (click)="submit()">
+        <mat-spinner
+          *ngIf="isLoading"
+          diameter="20"
+          class="spinner-btn">
+        </mat-spinner>
+        <span *ngIf="!isLoading">Refine</span>
+      </button>
+    </div>
+
+    <mat-form-field appearance="outline" class="full-width output-box">
+      <mat-label>Refined Prompt</mat-label>
+      <textarea
+        matInput
+        rows="15"
+        [value]="refinedPrompt"
+        readonly
+        placeholder="Refined prompt will appear here...">
+      </textarea>
+
+      <!-- ✅ Floating copy icon button -->
+      <button
+        mat-icon-button
+        matSuffix
+        *ngIf="refinedPrompt"
+        aria-label="Copy refined prompt"
+        (click)="copyToClipboard()"
+        class="copy-icon-btn">
+        <mat-icon>content_copy</mat-icon>
+      </button>
+
+    </mat-form-field>
+  </form>
+
+</mat-card>
+
+

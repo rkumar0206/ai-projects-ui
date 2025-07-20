@@ -1,0 +1,47 @@
+.prompt-refiner-card {
+  margin: 2rem auto;
+  max-width: 800px;
+  padding: 2rem;
+  background-color: #f7f0fc; /* light plum */
+  border: 1px solid #9c27b0;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(156, 39, 176, 0.2);
+}
+
+mat-card-title {
+  font-size: 1.8rem;
+  color: #6a1b9a; /* deep purple */
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.submit-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.spinner-btn {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+.output-box textarea {
+  background-color: #f3e5f5; /* light purple */
+  color: #4a148c;
+  font-weight: 500;
+  padding-right: 3rem; /* space for the icon */
+}
+
+.copy-icon-btn {
+  margin-top: -8px;
+  margin-right: -8px;
+  color: #6a1b9a;
+}
