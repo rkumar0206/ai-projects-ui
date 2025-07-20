@@ -1,0 +1,47 @@
+
+<div class="palette-container">
+  <h2 class="theme-header">{{ themeName }}</h2>
+  <div class="color-grid">
+    <div
+      class="color-card"
+      *ngFor="let color of palette"
+      [matTooltip]="color.colorName"
+      matTooltipPosition="above"
+    >
+      <div class="color-swatch" [style.background]="color.hexCode"></div>
+      <div class="color-value">{{ color.hexCode }}</div>
+      <button
+        class="copy-btn"
+        mat-icon-button
+        (click)="copyColor(color.hexCode)"
+        [attr.aria-label]="'Copy ' + color.hexCode"
+      >
+        <span class="material-icons">content_copy</span>
+      </button>
+    </div>
+  </div>
+  <div class="rationale-container">
+    <textarea class="rationale-text" readonly>{{ rationale }}</textarea>
+  </div>
+  <!-- <div class="refresh-container">
+    <button class="refresh-btn" mat-raised-button color="primary" (click)="refreshPalette()">
+      <span class="material-icons">refresh</span>
+      Refresh Palette
+    </button>
+  </div> -->
+
+      <div class="refresh-container">
+      <button
+        mat-raised-button
+        color="primary"
+        [disabled]="isLoading"
+        (click)="refreshPalette()">
+        <mat-spinner
+          *ngIf="isLoading"
+          diameter="20"
+          class="spinner-btn">
+        </mat-spinner>
+        <span *ngIf="!isLoading">Refresh Theme</span>
+      </button>
+    </div>
+</div>

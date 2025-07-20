@@ -1,0 +1,218 @@
+.palette-container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  background: #f3e5f5;
+  margin: 0;
+  padding: 0;
+}
+
+.theme-header {
+  text-align: center;
+  font-size: 2rem;
+  color: #4F4A80;
+  margin: 1.5rem 0 1rem 0;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  height: 60vh;
+  width: 100vw;
+  margin-top: 2.5rem;
+}
+
+.color-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  position: relative;
+  cursor: pointer;
+}
+
+.color-swatch {
+  width: 80%;
+  height: 60%;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  margin-bottom: 1.5rem;
+  border: 2px solid #fff;
+  transition: transform 0.2s;
+}
+
+.color-card:hover .color-swatch {
+  transform: scale(1.04);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+.color-value {
+  font-family: monospace;
+  font-size: 1.2rem;
+  color: #333;
+  background: rgba(255,255,255,0.7);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  margin-top: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.copy-btn {
+  margin-top: 0.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  color: #4F4A80;
+  transition: color 0.2s;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.copy-btn:hover {
+  color: #D46A4A;
+}
+
+.material-icons {
+  font-size: 1.5rem;
+  vertical-align: middle;
+}
+
+.rationale-container {
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem 0 0.5rem 0;
+  width: 100%;
+}
+
+.rationale-text {
+  width: 80vw;
+  min-height: 80px;
+  max-height: 180px;
+  resize: vertical;
+  font-size: 1rem;
+  font-family: inherit;
+  padding: 1rem;
+  border-radius: 10px;
+  border: 1px solid #ce93d8;
+  background: #fff;
+  color: #4F4A80;
+  overflow-y: auto;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.refresh-container {
+  display: flex;
+  justify-content: center;   /* Center horizontally */
+  align-items: center;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.spinner-btn {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+
+/* .palette-container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  background: #f3e5f5;
+  margin: 0;
+  padding: 0;
+}
+
+.theme-header {
+  text-align: center;
+  font-size: 2rem;
+  color: #4F4A80;
+  margin: 1.5rem 0 1rem 0;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  height: 60vh;
+  width: 100vw;
+}
+
+.color-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.color-swatch {
+  width: 80%;
+  height: 60%;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  margin-bottom: 1.5rem;
+  border: 2px solid #fff;
+  transition: transform 0.2s;
+}
+
+.color-card:hover .color-swatch {
+  transform: scale(1.04);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+.color-value {
+  font-family: monospace;
+  font-size: 1.2rem;
+  color: #333;
+  background: rgba(255,255,255,0.7);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  margin-top: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.rationale-container {
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem 0;
+  width: 100%;
+}
+
+.rationale-text {
+  width: 80vw;
+  min-height: 80px;
+  max-height: 180px;
+  resize: vertical;
+  font-size: 1rem;
+  font-family: inherit;
+  padding: 1rem;
+  border-radius: 10px;
+  border: 1px solid #ce93d8;
+  background: #fff;
+  color: #4F4A80;
+  overflow-y: auto;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+} */

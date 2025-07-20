@@ -1,0 +1,10 @@
+<div class="container">
+  <h2 class="header-text">{{ header }}</h2>
+
+  <div class="card-grid">
+    <div class="category-card" *ngFor="let cat of categories" (click)="onCategoryClick(cat)">
+      <img [src]="cat.image" [alt]="cat.name" />
+      <div class="card-title">{{ cat.name }}</div>
+    </div>
+  </div>
+</div>
