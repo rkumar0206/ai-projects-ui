@@ -38,7 +38,9 @@ export class TheRandomValueComponent {
       case 'Colors':
         this.router.navigate(['/the-random-value/colors']);
         break;
-    
+      case 'Github Repositories':
+        this.router.navigate(['/the-random-value/repositories']);
+        break;
       default:
         console.log('Category clicked:', category);
         // Implement your logic here

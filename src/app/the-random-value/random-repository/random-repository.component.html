@@ -1,0 +1,53 @@
+<div class="repo-page">
+  <div class="side-panel">
+    <form class="repo-form" (ngSubmit)="submitForm()">
+      <div class="form-group">
+        <label for="repoCount">Number of repositories (Max 10)</label>
+        <input
+          type="number"
+          id="repoCount"
+          name="repoCount"
+          [(ngModel)]="repoCount"
+          min="1"
+          max="10"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="languages">Languages</label>
+        <input
+          type="text"
+          id="languages"
+          name="languages"
+          [(ngModel)]="languages"
+          placeholder="Random"
+        />
+      </div>
+<button type="submit" class="submit-btn" [disabled]="isLoading">
+  <mat-spinner *ngIf="isLoading" diameter="20" class="spinner-btn"></mat-spinner>
+  <span *ngIf="!isLoading">Submit</span>
+</button>
+    </form>
+  </div>
+  <div class="main-content">
+    <h2 class="repo-header">Random Github Repositories</h2>
+    <div class="repo-container">
+      <div class="repo-grid">
+        <div
+          class="repo-card"
+          *ngFor="let repo of repositories"
+          (click)="openRepo(repo.url)"
+          tabindex="0"
+          role="button"
+          [attr.aria-label]="repo.url"
+        >
+          <div class="repo-title">{{ getRepoTitle(repo.url) }}</div>
+          <div class="repo-description">{{ repo.briefDescription }}</div>
+          <div class="repo-languages">
+            <span *ngFor="let lang of repo.languages" class="repo-lang">{{ lang }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
