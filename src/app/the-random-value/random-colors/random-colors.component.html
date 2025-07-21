@@ -8,6 +8,7 @@
       [matTooltip]="color.colorName"
       matTooltipPosition="above"
     >
+      <div class="color-category">{{ color.category }}</div>
       <div class="color-swatch" [style.background]="color.hexCode"></div>
       <div class="color-value">{{ color.hexCode }}</div>
       <button
@@ -23,25 +24,18 @@
   <div class="rationale-container">
     <textarea class="rationale-text" readonly>{{ rationale }}</textarea>
   </div>
-  <!-- <div class="refresh-container">
-    <button class="refresh-btn" mat-raised-button color="primary" (click)="refreshPalette()">
-      <span class="material-icons">refresh</span>
-      Refresh Palette
+  <div class="refresh-container">
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="isLoading"
+      (click)="refreshPalette()">
+      <mat-spinner
+        *ngIf="isLoading"
+        diameter="20"
+        class="spinner-btn">
+      </mat-spinner>
+      <span *ngIf="!isLoading">Refresh Theme</span>
     </button>
-  </div> -->
-
-      <div class="refresh-container">
-      <button
-        mat-raised-button
-        color="primary"
-        [disabled]="isLoading"
-        (click)="refreshPalette()">
-        <mat-spinner
-          *ngIf="isLoading"
-          diameter="20"
-          class="spinner-btn">
-        </mat-spinner>
-        <span *ngIf="!isLoading">Refresh Theme</span>
-      </button>
-    </div>
+  </div>
 </div>
