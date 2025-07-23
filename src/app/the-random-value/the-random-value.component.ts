@@ -41,6 +41,9 @@ export class TheRandomValueComponent {
       case 'Github Repositories':
         this.router.navigate(['/the-random-value/repositories']);
         break;
+      case 'Images':
+        this.router.navigate(['/the-random-value/images']);
+        break;
       default:
         console.log('Category clicked:', category);
         // Implement your logic here

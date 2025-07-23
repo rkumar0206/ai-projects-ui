@@ -1,0 +1,50 @@
+<div class="image-page">
+  <div class="side-panel">
+    <form class="image-form" (ngSubmit)="submitForm()">
+      <div class="form-group">
+        <label for="keywords">Keywords</label>
+        <input
+          type="text"
+          id="keywords"
+          name="keywords"
+          [(ngModel)]="keywords"
+          maxlength="30"
+          placeholder="Add comma separated keywords"
+          required
+        />
+      </div>
+      <button type="submit" class="submit-btn" [disabled]="isLoading">
+        <mat-spinner *ngIf="isLoading" diameter="20" class="spinner-btn"></mat-spinner>
+        <span *ngIf="!isLoading">Generate</span>
+      </button>
+    </form>
+  </div>
+  <div class="main-content">
+    <h2 class="image-header">Generate Random AI Image</h2>
+    <div class="image-container">
+      <button
+        *ngIf="imageUrl && !isLoading"
+        class="download-btn"
+        (click)="downloadImage()"
+        aria-label="Download Image"
+      >
+        <span class="material-icons">download</span>
+      </button>
+      <div class="image-wrapper">
+        <mat-spinner *ngIf="isLoading" diameter="48" class="center-spinner"></mat-spinner>
+        <img
+          *ngIf="imageUrl"
+          [src]="imageUrl"
+          alt="AI Generated"
+          [class.loading]="isLoading"
+          (load)="onImageLoad($event)"
+          width="1024"
+          #aiImage
+        />
+      </div>
+      <div class="image-description" *ngIf="imageDescription">
+        {{ imageDescription }}
+      </div>
+    </div>
+  </div>
+</div>
