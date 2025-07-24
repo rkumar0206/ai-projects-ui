@@ -44,6 +44,9 @@ export class TheRandomValueComponent {
       case 'Images':
         this.router.navigate(['/the-random-value/images']);
         break;
+      case 'Food Recipes':
+        this.router.navigate(['/the-random-value/recipes']);
+        break;
       default:
         console.log('Category clicked:', category);
         // Implement your logic here

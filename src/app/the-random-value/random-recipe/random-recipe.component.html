@@ -1,0 +1,85 @@
+<div class="recipe-page">
+  <div class="side-panel">
+    <form class="recipe-form" (ngSubmit)="submitForm()">
+      <div class="form-group">
+        <label for="region">Region</label>
+        <input
+          type="text"
+          id="region"
+          name="region"
+          [(ngModel)]="region"
+          maxlength="20"
+          placeholder="Random"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="ingredients">Ingredients</label>
+        <input
+          type="text"
+          id="ingredients"
+          name="ingredients"
+          [(ngModel)]="ingredients"
+          maxlength="50"
+          placeholder="Comma separated ingredients"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="otherConsideration">Other Consideration</label>
+        <input
+          type="text"
+          id="otherConsideration"
+          name="otherConsideration"
+          [(ngModel)]="otherConsideration"
+          maxlength="30"
+        />
+      </div>
+      <button type="submit" class="submit-btn" [disabled]="isLoading">
+        <mat-spinner *ngIf="isLoading" diameter="20" class="spinner-btn"></mat-spinner>
+        <span *ngIf="!isLoading">Submit</span>
+        <span *ngIf="isLoading">Loading...</span>
+      </button>
+    </form>
+  </div>
+  <div class="main-content">
+    <h2 class="recipe-header">Random Recipe</h2>
+    <div class="recipe-container">
+      <div class="recipe-details">
+        <div class="recipe-title">{{ recipe?.recipeTitle }}</div>
+        <div class="recipe-description">{{ recipe?.description }}</div>
+        <div class="recipe-meta">
+          <span *ngIf="recipe?.yield"><strong>Yield:</strong> {{ recipe?.yield }}</span>
+          <span *ngIf="recipe?.prepTime"><strong>Prep Time:</strong> {{ recipe?.prepTime }}</span>
+          <span *ngIf="recipe?.cookTime"><strong>Cook Time:</strong> {{ recipe?.cookTime }}</span>
+        </div>
+        <div class="recipe-section" *ngIf="recipe?.ingredients?.length">
+          <div class="section-title">Ingredients</div>
+          <ul>
+            <li *ngFor="let ing of recipe?.ingredients">{{ ing }}</li>
+          </ul>
+        </div>
+        <div class="recipe-section" *ngIf="recipe?.instructions?.length">
+          <div class="section-title">Instructions</div>
+          <ol>
+            <li *ngFor="let step of recipe?.instructions">{{ step }}</li>
+          </ol>
+        </div>
+      </div>
+      <div class="recipe-image-container">
+        <div class="image-wrapper">
+          <mat-spinner *ngIf="isImageLoading" diameter="40" class="center-spinner"></mat-spinner>
+          <img
+            *ngIf="recipeImageUrl"
+            [src]="recipeImageUrl"
+            alt="Recipe Image"
+            (load)="onImageLoad()"
+            [class.loading]="isImageLoading"
+            width="220"
+            height="180"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
