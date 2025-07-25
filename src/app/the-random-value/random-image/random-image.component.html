@@ -18,6 +18,24 @@
         <span *ngIf="!isLoading">Generate</span>
       </button>
     </form>
+
+        <div class="saved-images">
+      <h3 class="saved-images-header">Saved Images</h3>
+      <div class="image-card" *ngFor="let saved of savedImages">
+        <div class="card-content">
+          <!-- Clickable image prompt -->
+          <div class="saved-image-clickable" (click)="loadSavedImage(saved)">
+            {{ saved.prompt.length > 40 ? (saved.prompt | slice:0:40) + '...' : saved.prompt }}
+          </div>
+
+          <!-- Delete button -->
+          <button mat-icon-button (click)="deleteSavedImage(saved)" aria-label="Delete Recipe" class="delete-icon-btn">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
   </div>
   <div class="main-content">
     <h2 class="image-header">Generate Random AI Image</h2>

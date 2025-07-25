@@ -17,15 +17,16 @@ export class TheRandomValueComponent {
   header = 'Get a random result based on any of the below categories';
 
   categories = [
+    { name: 'Github Repositories', image: 'assets/images/github_img.svg' },
+    { name: 'Images', image: 'assets/images/images_img.svg' },
+    { name: 'Food Recipes', image: 'assets/images/food_recipe_img.svg' },
+    { name: 'Colors', image: 'assets/images/colors_img.svg' },
     { name: 'Numbers and Alphabets', image: 'assets/images/numbers_and_alphabets_img.svg' },
     { name: 'Dates', image: 'assets/images/dates_img.svg' },
-    { name: 'Food Recipes', image: 'assets/images/food_recipe_img.svg' },
-    { name: 'Images', image: 'assets/images/images_img.svg' },
     { name: 'Shopping', image: 'assets/images/shopping.svg' },
-    { name: 'Github Repositories', image: 'assets/images/github_img.svg' },
-    { name: 'Colors', image: 'assets/images/colors_img.svg' },
     { name: 'Videos', image: 'assets/images/video_img.svg' },
     { name: 'Articles', image: 'assets/images/article_img.svg' },
+    { name: 'Stories', image: 'assets/images/stories_img.png' },
   ];
 
   // Handle category click logic here

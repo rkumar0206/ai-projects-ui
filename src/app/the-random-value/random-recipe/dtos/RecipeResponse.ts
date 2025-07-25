@@ -1,4 +1,5 @@
 export interface RecipeResponse {
+  id: number;
   recipeTitle: string;
   description: string;
   yield: string;
@@ -7,4 +8,9 @@ export interface RecipeResponse {
   ingredients: string[];
   instructions: string[];
   imagePrompt: string; // Optional field for image prompt
+}
+
+export interface PartialRecipeResponse {
+  id: number;
+  recipeTitle: string;
 }

@@ -3,37 +3,18 @@
     <form class="recipe-form" (ngSubmit)="submitForm()">
       <div class="form-group">
         <label for="region">Region</label>
-        <input
-          type="text"
-          id="region"
-          name="region"
-          [(ngModel)]="region"
-          maxlength="20"
-          placeholder="Random"
-          required
-        />
+        <input type="text" id="region" name="region" [(ngModel)]="region" maxlength="20" placeholder="Random"
+          required />
       </div>
       <div class="form-group">
         <label for="ingredients">Ingredients</label>
-        <input
-          type="text"
-          id="ingredients"
-          name="ingredients"
-          [(ngModel)]="ingredients"
-          maxlength="50"
-          placeholder="Comma separated ingredients"
-          required
-        />
+        <input type="text" id="ingredients" name="ingredients" [(ngModel)]="ingredients" maxlength="50"
+          placeholder="Comma separated ingredients" required />
       </div>
       <div class="form-group">
         <label for="otherConsideration">Other Consideration</label>
-        <input
-          type="text"
-          id="otherConsideration"
-          name="otherConsideration"
-          [(ngModel)]="otherConsideration"
-          maxlength="30"
-        />
+        <input type="text" id="otherConsideration" name="otherConsideration" [(ngModel)]="otherConsideration"
+          maxlength="100" />
       </div>
       <button type="submit" class="submit-btn" [disabled]="isLoading">
         <mat-spinner *ngIf="isLoading" diameter="20" class="spinner-btn"></mat-spinner>
@@ -41,6 +22,25 @@
         <span *ngIf="isLoading">Loading...</span>
       </button>
     </form>
+
+    <div class="saved-recipes">
+      <h3 class="saved-recipes-header">Saved Recipes</h3>
+      <div class="recipe-card" *ngFor="let saved of savedRecipes">
+        <div class="card-content">
+          <!-- Clickable recipe title -->
+          <div class="recipe-clickable" (click)="loadSavedRecipe(saved)">
+            {{ saved.recipeTitle }}
+          </div>
+
+          <!-- Delete button -->
+          <button mat-icon-button (click)="deleteSavedRecipe(saved)" aria-label="Delete Recipe" class="delete-icon-btn">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
+
   </div>
   <div class="main-content">
     <h2 class="recipe-header">Random Recipe</h2>
@@ -69,16 +69,10 @@
       <div class="recipe-image-container">
         <div class="image-wrapper">
           <mat-spinner *ngIf="isImageLoading" diameter="40" class="center-spinner"></mat-spinner>
-          <img
-            *ngIf="recipeImageUrl"
-            [src]="recipeImageUrl"
-            alt="Recipe Image"
-            (load)="onImageLoad()"
-            [class.loading]="isImageLoading"
-            width="220"
-            height="180"
-          />
+          <img *ngIf="recipeImageUrl" [src]="recipeImageUrl" alt="Recipe Image" (load)="onImageLoad()"
+            [class.loading]="isImageLoading" width="220" height="180" />
         </div>
+        <button class="save-btn" (click)="saveRecipe()" *ngIf="recipe && isSaveRecipeButtonVisible">Save Recipe</button>
       </div>
     </div>
   </div>
