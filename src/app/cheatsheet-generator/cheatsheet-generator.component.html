@@ -1,0 +1,43 @@
+<div class="page-container">
+  <mat-card class="form-card">
+    <mat-card-content>
+      <form (ngSubmit)="generateCheatsheet()" class="cheatsheet-form">
+        <mat-form-field appearance="outline" class="technology-input">
+          <mat-label>Technology</mat-label>
+          <input
+            matInput
+            [(ngModel)]="technology"
+            name="technology"
+            placeholder="e.g., Angular, React, TypeScript"
+            [disabled]="loading"
+            required
+          />
+        </mat-form-field>
+
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="loading || !technology.trim()"
+          class="submit-button"
+        >
+          <span *ngIf="!loading">Generate Cheatsheet</span>
+          <mat-spinner *ngIf="loading" diameter="20" class="button-spinner"></mat-spinner>
+        </button>
+      </form>
+
+      <mat-error *ngIf="error" class="error-message">
+        <mat-icon>error</mat-icon>
+        {{ error }}
+      </mat-error>
+    </mat-card-content>
+  </mat-card>
+
+  <div *ngIf="cheatsheetHtml" class="result-container">
+    <mat-card class="result-card">
+      <mat-card-content>
+        <div [innerHTML]="cheatsheetHtml" class="html-content"></div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
