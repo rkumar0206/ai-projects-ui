@@ -58,7 +58,8 @@ export class CheatsheetGeneratorComponent {
         this.loading = false;
       },
       error: (error) => {
-        this.error = 'Failed to generate cheatsheet: ' + error.message;
+        console.log(error);
+        this.error = 'Failed to generate cheatsheet: ' + error.error;
         this.loading = false;
       }
     });
