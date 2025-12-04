@@ -1,43 +1,88 @@
 <div class="page-container">
-  <mat-card class="form-card">
-    <mat-card-content>
-      <form (ngSubmit)="generateCheatsheet()" class="cheatsheet-form">
-        <mat-form-field appearance="outline" class="technology-input">
-          <mat-label>Technology</mat-label>
-          <input
-            matInput
-            [(ngModel)]="technology"
-            name="technology"
-            placeholder="e.g., Angular, React, TypeScript"
-            [disabled]="loading"
-            required
-          />
-        </mat-form-field>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <h1 class="sidebar-title">Cheatsheet Generator</h1>
+      <p class="sidebar-subtitle">Generate tech cheatsheets instantly</p>
+    </div>
 
-        <button
-          mat-raised-button
-          color="primary"
-          type="submit"
-          [disabled]="loading || !technology.trim()"
-          class="submit-button"
-        >
-          <span *ngIf="!loading">Generate Cheatsheet</span>
-          <mat-spinner *ngIf="loading" diameter="20" class="button-spinner"></mat-spinner>
-        </button>
-      </form>
+    <!-- Search Form -->
+    <div class="search-section">
+      <mat-form-field appearance="outline" class="technology-input">
+        <mat-label>Technology</mat-label>
+        <input
+          matInput
+          [(ngModel)]="technology"
+          name="technology"
+          placeholder="e.g., Angular, React, TypeScript"
+          [disabled]="loading"
+          required
+        />
+      </mat-form-field>
+
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        (click)="generateCheatsheet()"
+        [disabled]="loading || !technology.trim()"
+        class="submit-button"
+      >
+        <span *ngIf="!loading">Generate Cheatsheet</span>
+        <mat-spinner *ngIf="loading" diameter="20" class="button-spinner"></mat-spinner>
+      </button>
 
       <mat-error *ngIf="error" class="error-message">
         <mat-icon>error</mat-icon>
         {{ error }}
       </mat-error>
-    </mat-card-content>
-  </mat-card>
+    </div>
 
-  <div *ngIf="cheatsheetHtml" class="result-container">
-    <mat-card class="result-card">
-      <mat-card-content>
-        <div [innerHTML]="cheatsheetHtml" class="html-content"></div>
-      </mat-card-content>
-    </mat-card>
+    <!-- Saved Cheatsheets -->
+    <div class="saved-section">
+      <h2 class="saved-title">Saved Cheatsheets</h2>
+      <div class="saved-list">
+        <div *ngFor="let sheet of savedCheatsheets" class="saved-item" (click)="getCheatSheet(sheet)">
+          <div class="saved-item-content">
+            <p class="saved-item-name">{{ sheet }}</p>
+          </div>
+          <button
+            mat-icon-button
+            class="delete-button"
+            (click)="deleteCheatsheet(sheet)"
+            aria-label="Delete cheatsheet"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+
+        <p *ngIf="savedCheatsheets.length === 0" class="empty-message">
+          No saved cheatsheets yet
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="content-wrapper">
+      <div *ngIf="hasCheatsheet" class="result-container">
+        <mat-card class="result-card">
+          <mat-card-content>
+            <div [innerHTML]="cheatsheetHtml" class="html-content"></div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <div *ngIf="!hasCheatsheet" class="empty-state">
+        <div class="empty-state-icon">
+          <mat-icon>search</mat-icon>
+        </div>
+        <h2 class="empty-state-title">No Cheatsheet Generated Yet</h2>
+        <p class="empty-state-text">
+          Enter a technology name in the sidebar to generate a cheatsheet
+        </p>
+      </div>
+    </div>
   </div>
 </div>
