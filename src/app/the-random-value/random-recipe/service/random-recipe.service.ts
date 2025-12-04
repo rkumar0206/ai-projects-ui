@@ -2,12 +2,13 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PartialRecipeResponse, RecipeResponse } from '../dtos/RecipeResponse';
+import {environment} from "../../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class RandomRecipeService {
-  private readonly apiUrl = 'http://localhost:7070/api/the-random-value/recipe';
+  private readonly apiUrl = `${environment.apiUrl}/the-random-value/recipe`;
 
   constructor(private http: HttpClient) { }
 

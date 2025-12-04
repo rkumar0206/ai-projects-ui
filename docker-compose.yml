@@ -1,0 +1,35 @@
+services:
+  ai-frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: rkumar0206/ai-frontend:v1.1.0
+    container_name: ai-frontend
+    ports:
+      - "7071:80"
+    restart: unless-stopped
+    networks:
+      - ai-network
+
+  # Optional: Development service with hot reload
+  ai-frontend-dev:
+    image: node:20-alpine
+    container_name: ai-frontend-dev
+    working_dir: /app
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - "4200:4200"
+    command: sh -c "npm install && npm start -- --host 0.0.0.0"
+    environment:
+      - NODE_ENV=development
+    networks:
+      - ai-network
+    profiles:
+      - dev
+
+networks:
+  ai-network:
+    external: true
+    name: ai-network

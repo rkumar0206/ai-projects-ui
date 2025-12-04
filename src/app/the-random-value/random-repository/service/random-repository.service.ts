@@ -2,16 +2,17 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { RandomRespositoryResponse } from '../dtos/RandomRespositoryDTOs';
 import { Observable } from 'rxjs';
+import {environment} from "../../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class RandomRepositoryService {
 
-    private readonly apiUrl = 'http://localhost:7070/api/the-random-value/repositories';
-  
+    private readonly apiUrl = `${environment.apiUrl}/the-random-value/repositories`;
+
     constructor(private http: HttpClient) {}
-  
+
   getRandomRepositories(count?: number, languagesUsed?: string): Observable<RandomRespositoryResponse> {
     let params = new HttpParams();
     if (count !== undefined && count !== null) {
