@@ -20,7 +20,8 @@ export class HomeComponent {
   categories = [
     { name: 'The Random Value', image: 'assets/images/th_random_value.png' },
     { name: 'Cheatsheet Generator', image: 'assets/images/cheatsheet_generator.png' },
-    { name: 'K8 config generator', image: 'assets/images/k8s_config_gen.png' },
+    { name: 'CodeEquivalent', image: 'assets/images/cross_platform_mapping_img.png' },
+    { name: 'K8s config generator', image: 'assets/images/k8s_config.png' },
   ];
 
   // Handle category click logic here
@@ -30,7 +31,7 @@ export class HomeComponent {
     // Implement your logic here
 
     switch (category.name) {
-      case 'K8 config generator':
+      case 'K8s config generator':
         this.router.navigate(['/deployment-configuration']);
         break;
       case 'The Random Value':
@@ -39,6 +40,9 @@ export class HomeComponent {
       case 'Cheatsheet Generator':
         this.router.navigate(['/cheatsheet-generator']);
         break;
+      case 'CodeEquivalent':
+        this.router.navigate(['/code-equivalent']);
+        break
       default:
         console.log('Category clicked:', category);
         // Implement your logic here

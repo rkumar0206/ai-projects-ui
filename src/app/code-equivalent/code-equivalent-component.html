@@ -1,0 +1,121 @@
+<div class="page-container">
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <h1 class="sidebar-title">Code Equivalent Generator</h1>
+      <p class="sidebar-subtitle">Generate equivalent code instantly</p>
+    </div>
+
+    <!-- Search Form -->
+    <div class="search-section">
+      <mat-form-field appearance="outline" class="technology-input">
+        <mat-label>Source</mat-label>
+        <input
+          matInput
+          [(ngModel)]="source"
+          name="Source"
+          placeholder="e.g., Java, Springboot, Python"
+          [disabled]="loading"
+          required
+          maxlength="25"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="technology-input">
+        <mat-label>Target</mat-label>
+        <input
+          matInput
+          [(ngModel)]="target"
+          name="target"
+          placeholder="e.g., FastAPI, Angular, React, TypeScript"
+          [disabled]="loading"
+          required
+          maxlength="25"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="technology-input">
+        <mat-label>Tool/Framework/Library</mat-label>
+        <input
+          matInput
+          [(ngModel)]="tool"
+          name="technology"
+          placeholder="e.g., JPA, dictionary, liquibase"
+          [disabled]="loading"
+          required
+          maxlength="25"
+        />
+      </mat-form-field>
+
+
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        (click)="generateReport()"
+        [disabled]="loading || (!source.trim() || !target.trim() || !tool.trim())"
+        class="submit-button"
+      >
+        <span *ngIf="!loading">Generate Report</span>
+        <mat-spinner *ngIf="loading" diameter="20" class="button-spinner"></mat-spinner>
+      </button>
+
+      <mat-error *ngIf="error" class="error-message">
+        <mat-icon>error</mat-icon>
+        {{ error }}
+      </mat-error>
+    </div>
+
+    <!-- Saved Cheatsheets -->
+    <div class="saved-section">
+      <h2 class="saved-title">Saved Reports</h2>
+      <div class="saved-list">
+        <div *ngFor="let report of savedReports" class="saved-item" (click)="getReport(report)">
+          <div class="saved-item-content">
+            <label>Source: </label> <span class="saved-item-name">{{ report.source }}</span>
+            <br>
+            <label>Target: </label> <span class="saved-item-name">{{ report.target }}</span>
+            <br>
+            <label>Tool: </label> <span class="saved-item-name">{{ report.tool }}</span>
+          </div>
+          <button
+            mat-icon-button
+            class="delete-button"
+            (click)="deleteReport(report.id)"
+            aria-label="Delete cheatsheet"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+
+        <p *ngIf="savedReports.length === 0" class="empty-message">
+          No saved cheatsheets yet
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="content-wrapper">
+      <div *ngIf="hasReport" class="result-container">
+        <mat-card class="result-card">
+          <mat-card-content>
+            <div [innerHTML]="reportHtml" class="html-content"></div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <div *ngIf="!hasReport" class="empty-state">
+        <div class="empty-state-icon">
+          <mat-icon>search</mat-icon>
+        </div>
+        <h2 class="empty-state-title">No Reports Generated Yet</h2>
+        <p class="empty-state-text">
+          Fill out the form in the sidebar to generate report.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

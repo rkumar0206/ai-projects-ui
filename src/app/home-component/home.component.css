@@ -26,6 +26,7 @@
   border-radius: 12px;
   width: 100%;
   max-width: 250px;
+  max-height: 250px;
   padding: 1rem;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
@@ -38,15 +39,15 @@
 
 .category-card img {
   width: 100%;
-  height: 150px;
+  height: 100%;
   object-fit: contain; /* Show full image, no zoom/crop */
   background: #fff;    /* Optional: white background for transparency */
   border-radius: 8px;
 }
 
 .card-title {
-  margin-top: 0.75rem;
+  margin-top: 2rem;
   color: #4a148c;
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 1.3rem;
 }

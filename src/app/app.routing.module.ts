@@ -5,12 +5,14 @@ import {
 import {PromptRefinerComponent} from "./prompt-refiner/prompt-refiner.component";
 import {CheatsheetGeneratorComponent} from "./cheatsheet-generator/cheatsheet-generator.component";
 import {HomeComponent} from "./home-component/home.component";
+import {CodeEquivalentComponent} from "./code-equivalent/code-equivalent-component";
 
 export const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'deployment-configuration', component: K8DeploymentFileGeneratorComponent},
   {path: 'prompt-refiner', component: PromptRefinerComponent},
   {path: 'cheatsheet-generator', component: CheatsheetGeneratorComponent},
+  {path: 'code-equivalent', component: CodeEquivalentComponent},
   {
     path: 'the-random-value',
     loadComponent: () => import('./the-random-value/the-random-value.component').then(m => m.TheRandomValueComponent)
