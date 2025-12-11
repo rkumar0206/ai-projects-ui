@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { RandomImageService } from './service/random-image.service';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { MatIcon } from "@angular/material/icon";
-import { ImageService } from '../../image/service/image.service';
-import { PartialImageResponses } from '../../image/dto/ImageResponses';
+import {Component, OnInit} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {RandomImageService} from './service/random-image.service';
+import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
+import {MatIcon} from "@angular/material/icon";
+import {ImageService} from '../../image/service/image.service';
+import {PartialImageResponses} from '../../image/dto/ImageResponses';
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-random-image',
@@ -26,12 +27,14 @@ export class RandomImageComponent implements OnInit {
   imageHeight: number | null = null;
   savedImages: PartialImageResponses[] = []; // Array to hold saved image URLs
 
-  constructor(private randomImgeService: RandomImageService, private imageService: ImageService, private sanitizer: DomSanitizer) { }
+  constructor(private randomImgeService: RandomImageService, private imageService: ImageService, private sanitizer: DomSanitizer, private _snackbar: MatSnackBar) {
+  }
 
   ngOnInit(): void {
 
     this.getSavedImages(true);
   }
+
   getSavedImages(refresh: boolean) {
 
     this.imageService.getSavedImages().subscribe({
@@ -51,6 +54,7 @@ export class RandomImageComponent implements OnInit {
       }
     });
   }
+
   loadInitialImage() {
 
     this.imageRawUrl = this.randomImgeService.getInitialImageString()
@@ -81,15 +85,30 @@ export class RandomImageComponent implements OnInit {
   submitForm(): void {
     console.log('Keywords submitted:', this.keywords);
     this.isLoading = true;
-    this.randomImgeService.getRandomImage(this.keywords).subscribe({
+    this.randomImgeService.getRandomImagePrompt(this.keywords).subscribe({
       next: (response) => {
         this.imageDescription = response.description;
-        this.imageRawUrl = response.image; // Save raw URL for download
-        this.imageUrl = this.sanitizer.bypassSecurityTrustUrl(response.image); // Use DomSanitizer for safe display
-        this.getSavedImages(false); // Refresh saved images after fetching a new one
+
+        this.randomImgeService.generateImageByPrompt(this.imageDescription).subscribe({
+          next: (response) => {
+            this.imageRawUrl = response.image; // Save raw URL for download
+            this.imageUrl = this.sanitizer.bypassSecurityTrustUrl(response.image); // Use DomSanitizer for safe display
+            this.getSavedImages(false); // Refresh saved images after fetching a new one
+          },
+          error: (err) => {
+            this._snackbar.open('❌ Failed to load image. Please try again.', 'Close', {
+              duration: 3000,
+              panelClass: ['mat-snackbar-error']
+            });
+            this.isLoading = false;
+          }
+        })
       },
       error: (err) => {
-        console.error('Image fetch failed', err);
+        this._snackbar.open('❌ Failed to load image prompt', 'Close', {
+          duration: 3000,
+          panelClass: ['mat-snackbar-error']
+        });
       }
     });
 
@@ -115,7 +134,7 @@ export class RandomImageComponent implements OnInit {
   }
 
   deleteSavedImage(partialImageData: PartialImageResponses) {
-    
+
     this.imageService.deleteSavedImage(partialImageData.id).subscribe({
       next: () => {
         console.log('Image deleted successfully');

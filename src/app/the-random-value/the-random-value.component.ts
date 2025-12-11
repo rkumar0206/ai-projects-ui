@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 
 @Component({
@@ -12,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class TheRandomValueComponent {
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private _snackbar: MatSnackBar) { }
 
   header = 'Get a random result based on any of the below categories';
 
@@ -32,7 +33,7 @@ export class TheRandomValueComponent {
   // Handle category click logic here
   // For example, navigate to a new page or display results based on the selected category
   onCategoryClick(category: { name: string; image: string; }) {
-    console.log('Category clicked:', category);  
+    console.log('Category clicked:', category);
     // Implement your logic here
 
     switch (category.name) {
@@ -51,6 +52,10 @@ export class TheRandomValueComponent {
       default:
         console.log('Category clicked:', category);
         // Implement your logic here
+        this._snackbar.open('Coming soon...', 'Close', {
+          duration: 3000,
+          panelClass: ['mat-snackbar-error']
+        });
         break;
     }
   }
