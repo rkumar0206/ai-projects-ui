@@ -22,6 +22,7 @@ export class HomeComponent {
     { name: 'Cheatsheet Generator', image: 'assets/images/cheatsheet_generator.png' },
     { name: 'CodeEquivalent', image: 'assets/images/cross_platform_mapping_img.png' },
     { name: 'K8s config generator', image: 'assets/images/k8s_config.png' },
+    { name: 'Prompt Refiner', image: 'assets/images/prompt_refiner.png' },
   ];
 
   // Handle category click logic here
@@ -42,6 +43,9 @@ export class HomeComponent {
         break;
       case 'CodeEquivalent':
         this.router.navigate(['/code-equivalent']);
+        break
+      case 'Prompt Refiner':
+        this.router.navigate(['/prompt-refiner']);
         break
       default:
         console.log('Category clicked:', category);
